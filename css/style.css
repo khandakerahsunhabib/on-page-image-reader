@@ -1,0 +1,136 @@
+#imageDetailsTooltip {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #fff;
+    box-shadow: 0 1px 2px 0 rgb(199 202 203 / 30%),
+        0 1px 3px 1px rgb(160 162 165 / 15%);
+    font-size: 14px;
+    z-index: 10000;
+    max-width: 600px;
+    overflow: hidden;
+    color: #000;
+}
+
+#imageDetailsTooltip div:nth-child(5) {
+    margin-bottom: 8px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: end;
+    vertical-align: middle;
+    text-align: right;
+    gap: 10px;
+}
+
+#btn-primary {
+    display: inline-block;
+    background-color: #2b9ef1;
+    padding: 5px 15px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    color: #fff;
+}
+
+#btn-secondary {
+    display: inline-block;
+    background-color: #7c9704;
+    padding: 5px 15px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    color: #fff;
+}
+
+#btn-primary:hover,
+#btn-secondary:hover {
+    background-color: #fff;
+    color: #000;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+#copyStatus {
+    display: flex;
+    align-items: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+}
+
+.modal-heading {
+    font-size: 30px;
+    font-weight: 600;
+    border-bottom: 3px solid #cecece;
+    padding-bottom: 10px;
+    color: #000;
+}
+.meta-title {
+    color: #000;
+}
+.modal-content {
+    background-color: white;
+    color: #000;
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 300px;
+    min-height: 200px;
+    max-width: 50%;
+    max-height: 80%;
+    overflow: hidden;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 42px;
+    cursor: pointer;
+    background-color: #ea1313;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.image-details-header {
+    width: 100%;
+    background-color: #1e80c5;
+    padding: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
+
+.close-button {
+    background-color: #fff;
+    color: #000;
+    float: right;
+    border: none;
+    cursor: pointer;
+}
+
+.image-details-body {
+    padding: 10px;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.detail-icon {
+    width: 25px;
+    margin-right: 12px;
+}
