@@ -90,6 +90,7 @@
         <span class="detail-text"><strong>Alt Text:</strong> ${img.alt}</span>
       </div>
       <div class="button-wrapper">
+        <div id="btn-copy-url">COPY IMAGE URL</div> <!-- New button added -->
         <div id="btn-primary">COPY IMAGE NAME</div>
         <div id="btn-secondary">DOWNLOAD IMAGE</div>
         <div id="copyStatus"></div>
@@ -103,8 +104,29 @@
       tooltipElement.style.top = `${rect.top + window.scrollY + img.height}px`;
       tooltipElement.style.left = `${rect.left + window.scrollX}px`;
 
-      const copyButton = tooltipElement.querySelector("#btn-primary");
+      // Copy Image URL Button
+      const copyUrlButton = tooltipElement.querySelector("#btn-copy-url");
       const copyStatus = tooltipElement.querySelector("#copyStatus");
+      copyUrlButton.addEventListener("click", function () {
+        navigator.clipboard
+          .writeText(img.src)
+          .then(() => {
+            copyStatus.innerHTML =
+              '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0" viewBox="0 0 128 128" style="enable-background:new 0 0 20 20" xml:space="preserve" class=""><g><path fill="#0db577" d="M124 64c0 5.12-6.29 9.34-7.55 14.06-1.3 4.88 1.99 11.68-.48 15.95-2.51 4.34-10.06 4.86-13.58 8.38s-4.04 11.07-8.38 13.58c-4.27 2.47-11.07-.82-15.95.48C73.34 117.71 69.12 124 64 124s-9.34-6.29-14.06-7.55c-4.88-1.3-11.68 1.99-15.95-.48-4.34-2.51-4.86-10.06-8.38-13.58s-11.07-4.04-13.58-8.38c-2.47-4.27.82-11.07-.48-15.95C10.29 73.34 4 69.12 4 64s6.29-9.34 7.55-14.06c1.3-4.88-1.99-11.68.48-15.95 2.51-4.34 10.06-4.86 13.58-8.38s4.04-11.07 8.38-13.58c4.27-2.47 11.07.82 15.95-.48C54.66 10.29 58.88 4 64 4s9.34 6.29 14.06 7.55c4.88 1.3 11.68-1.99 15.95.48 4.34 2.51 4.86 10.06 8.38 13.58s11.07 4.04 13.58 8.38c2.47 4.27-.82-11.07.48-15.95C117.71 54.66 124 58.88 124 64z" opacity="1" data-original="#2568ef" class=""></path><path fill="#fffcee" d="M81.34 46.12 58.5 68.96 46.66 57.13a6.585 6.585 0 0 0-9.31 0 6.585 6.585 0 0 0 0 9.31l16.61 16.61a6.41 6.41 0 0 0 9.06 0l27.62-27.62a6.585 6.585 0 0 0 0-9.31 6.573 6.573 0 0 0-9.3 0z" opacity="1" data-original="#fffcee" class=""></path></g></svg>';
+            setTimeout(() => {
+              copyStatus.innerHTML = "";
+            }, 2000);
+          })
+          .catch((err) => {
+            copyStatus.textContent = "Failed to copy";
+            setTimeout(() => {
+              copyStatus.textContent = "";
+            }, 2000);
+          });
+      });
+
+      // Copy Image Name Button
+      const copyButton = tooltipElement.querySelector("#btn-primary");
       copyButton.addEventListener("click", function () {
         navigator.clipboard
           .writeText(imageName)
@@ -123,6 +145,7 @@
           });
       });
 
+      // Download Image Button
       const downloadButton = tooltipElement.querySelector("#btn-secondary");
       downloadButton.addEventListener("click", function () {
         const link = document.createElement("a");
@@ -132,20 +155,25 @@
         link.click();
         document.body.removeChild(link);
       });
+
       const closeButton = tooltipElement.querySelector("#closeTooltip");
       closeButton.addEventListener("click", function () {
         tooltipElement.remove();
         tooltipElement = null;
         tooltipEnabled = false;
       });
+
       tooltipElement.addEventListener("mouseenter", function () {
         clearTimeout(hideTooltipTimeout);
       });
+
       tooltipElement.addEventListener("mouseleave", function () {
         hideTootipWithDelay();
       });
+
       img.addEventListener("mouseleave", hideTootipWithDelay);
     });
+
     function hideTootipWithDelay() {
       hideTooltipTimeout = setTimeout(() => {
         if (tooltipElement) {

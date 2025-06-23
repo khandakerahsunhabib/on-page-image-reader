@@ -22,7 +22,14 @@
     text-align: right;
     gap: 10px;
 }
-
+#btn-copy-url {
+    display: inline-block;
+        background-color: #d5081c;
+        padding: 5px 15px;
+        border: 1px solid #cecece;
+        border-radius: 5px;
+        color: #fff;
+}
 #btn-primary {
     display: inline-block;
     background-color: #2b9ef1;
@@ -40,7 +47,7 @@
     border-radius: 5px;
     color: #fff;
 }
-
+#btn-copy-url:hover,
 #btn-primary:hover,
 #btn-secondary:hover {
     background-color: #fff;
